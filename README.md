@@ -1,3 +1,4 @@
+
 									Construction Material Recommendation System
 
 An intelligent, AI-powered web application designed to recommend optimal construction materials based on user inputs like building type, climate, budget, and more.
@@ -62,3 +63,5 @@ Flask-WTF==1.2.1
 WTForms==3.1.2
 imbalanced-learn==0.12.0
 
+# cmrs
+The construction Material Recommendation System is an intelligent web-based application designed to assist users in selecting the most suitable construction materials based on project-specific parameters. It leverages a trained machine learning model to analyze user inputs and provide accurate recommendation for material types.
