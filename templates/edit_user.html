@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Edit User</title>
+</head>
+<body>
+    <h1>Edit User: {{ user.username }}</h1>
+    <form method="POST" action="{{ url_for('edit_user', user_id=user.id) }}">
+        <label for="username">Username:</label><br/>
+        <input type="text" id="username" name="username" value="{{ user.username }}" required /><br/><br/>
+
+        <label for="role">Role:</label><br/>
+        <select id="role" name="role">
+            <option value="core" {% if user.role == 'core' %}selected{% endif %}>Core User</option>
+            <option value="admin" {% if user.role == 'admin' %}selected{% endif %}>Admin User</option>
+        </select><br/><br/>
+
+        <!-- Optional: Add password change functionality here if needed -->
+
+        <button type="submit">Update User</button>
+    </form>
+
+    <p><a href="{{ url_for('admin_dashboard') }}">Back to Admin Dashboard</a></p>
+</body>
+</html>

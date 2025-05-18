@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Core User Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #4f46e5;
+            text-align: center;
+        }
+
+        p {
+            color: #6b7280;
+            text-align: center;
+            max-width: 600px;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            margin-bottom: 0;
+        }
+
+        .dashboard-container {
+            background-color: #fff;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+            margin-top: 7rem;
+        }
+
+        a.logout-btn {
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            background-color: #4f46e5;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+            margin-top: 2rem;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        a.logout-btn:hover {
+            background-color: #4338ca;
+        }
+
+        .top-navigation {
+            background-color: #3b82f6;
+            color: white;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        .top-navigation a {
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+            font-size: 1.1rem;
+        }
+
+        .top-navigation a:hover {
+            background-color: #2563eb;
+            transform: translateY(-1px);
+        }
+
+        .top-navigation-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .top-navigation-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .top-navigation-left span {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .top-navigation-right a {
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .top-navigation {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+
+            .top-navigation-left, .top-navigation-right {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .button-container a{
+             color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            background-color: #4f46e5;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+            display: inline-block;
+            font-weight: 600;
+        }
+        .button-container a:hover{
+             background-color: #4338ca;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="top-navigation">
+        <div class="top-navigation-left">
+            <span class="font-semibold text-xl">Construction Material Recommendation System</span>
+        </div>
+        <div class="top-navigation-right">
+            <a href="{{ url_for('logout') }}">Logout</a>
+            <a href="{{ url_for('index') }}">Home</a>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <h1>Welcome, {{ username }}!</h1>
+        <p>This is your dashboard. You can access application features using the buttons below.</p>
+        <div class="button-container">
+            <a href="{{ url_for('recommendation_page') }}">Recommendations</a>
+        </div>
+    </div>
+</body>
+</html>

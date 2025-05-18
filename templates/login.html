@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login - Construction Material Recommendation System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url("{{ url_for('static', filename='images/login,register.jpg') }}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            font-family: 'Inter', sans-serif;
+            position: relative;
+            margin: 0; 
+        }
+
+        .top-navigation {
+            background-color: #3b82f6;
+            color: white;
+            padding: 1rem 1.5rem; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            box-sizing: border-box;
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            z-index: 10; 
+        }
+
+        .top-navigation a {
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem; 
+            border-radius: 0.375rem;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+            font-size: 1.1rem; 
+        }
+
+        .top-navigation a:hover {
+            background-color: #2563eb;
+            transform: translateY(-1px);
+        }
+
+        .top-navigation-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem; 
+        }
+
+        .top-navigation-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem; 
+        }
+
+        .top-navigation-left span {
+            font-size: 1.25rem; 
+            font-weight: bold; 
+        }
+
+        .top-navigation-right a {
+            font-weight: bold; 
+        }
+
+        @media (max-width: 768px) {
+            .top-navigation {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem; 
+                padding: 0.75rem; 
+            }
+
+            .top-navigation-left, .top-navigation-right {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        .login-container {
+            padding: 2.5rem 3rem;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            margin-top: 5rem;
+            box-sizing: border-box;
+        }
+
+        .login-container h2 {
+            margin-bottom: 1.5rem;
+            color: #04AA6D;
+            font-weight: 700;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 6px #04AA6D;
+            border-color: #04AA6D;
+        }
+
+        .form-label {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control {
+            font-size: 0.9rem;
+            padding: 0.6rem;
+            height: auto;
+        }
+
+        .mb-3 {
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-login {
+            background-color: #04AA6D;
+            border: none;
+            padding: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            width: 100%;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-login:hover {
+            background-color: #039955;
+        }
+
+        .signup-link {
+            margin-top: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .signup-link a {
+            color: #04AA6D;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        li.success {
+            color: green;
+        }
+
+        li.danger {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-navigation">
+        <div class="top-navigation-left">
+            <span class="font-semibold text-xl">Construction Material Recommendation System</span>
+        </div>
+        <div class="top-navigation-right">
+            <a href="{{ url_for('index') }}">Home</a>
+        </div>
+    </nav>
+
+    <div class="login-container">
+        <h2>Login to Your Account</h2>
+        <form action="/login" method="post">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="username"
+                    name="username"
+                    placeholder="Enter your username"
+                    required
+                    autofocus
+                />
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                />
+            </div>
+
+            <button type="submit" class="btn-login">Login</button>
+        </form>
+
+        <div class="signup-link">
+            Don't have an account? <a href="/register">Sign Up</a>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul>
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>
